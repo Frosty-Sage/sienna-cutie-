@@ -638,7 +638,7 @@ html, body{
   position: fixed;
   z-index: 200;
   pointer-events: none;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
   color: var(--dusty-rose);
   animation: tap-pop 0.9s ease-out forwards;
 }
