@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>For Miss Little 5 Feet ♡</title>
+
+<!-- 
+  Google Fonts are loaded here. If they fail to load (no internet, blocked, etc.)
+  the site falls back to normal serif / cursive / sans-serif fonts automatically,
+  see the font-family stacks in style.css.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     FLOATING BACKGROUND DECOR (petals / hearts / stars / paws)
+     This container is filled by script.js — you don't need to
+     touch it, it just needs to exist somewhere on the page.
+     ============================================================ -->
+<div class="bg-decor" id="bgDecor" aria-hidden="true"></div>
+
+<!-- ============================================================
+     PROGRESS INDICATOR (small heart counter, top corner)
+     ============================================================ -->
+<div class="progress-indicator" id="progressIndicator" aria-hidden="true">♡ 1 / 8</div>
+
+<!-- ============================================================
+     OPTIONAL MUSIC TOGGLE
+     Music never autoplays. This button just starts/stops a soft
+     hum generated in the browser (see script.js AUDIO section).
+     ============================================================ -->
+<button class="music-toggle" id="musicToggle" aria-label="Toggle background music" title="Toggle music">♪</button>
+
+<!-- ============================================================
+     PAGE 0 — THE SECRET ENTRANCE
+     ============================================================ -->
+<section class="page active" id="page-0" data-page="0">
+  <div class="entrance-card">
+    <p class="eyebrow-heart">♡</p>
+    <h1 class="script-heading">For Miss Little 5 Feet ♡</h1>
+
+    <!-- Replace this with her eyes photo. Recommended ratio ~4:1 -->
+    <div class="img-frame img-wide" data-placeholder="HER EYES GO HERE ♡">
+      <img src="assets/her-eyes.jpg" alt="Her eyes" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+    </div>
+    <p class="tiny-caption">Those eyes look suspiciously magical…</p>
+
+    <!-- Replace this with the cat photo -->
+    <div class="img-frame img-square floral-frame" data-placeholder="CAT PICTURE GOES HERE 🐈">
+      <img src="assets/cat1.jpg" alt="A cat" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+    </div>
+
+    <div class="pin-lock">
+      <p class="pin-title">A tiny secret awaits…</p>
+      <p class="pin-subtitle">Enter the 4-digit code ♡</p>
+      <div class="pin-boxes" id="pinBoxes">
+        <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="0" aria-label="Digit 1">
+        <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="1" aria-label="Digit 2">
+        <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="2" aria-label="Digit 3">
+        <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="3" aria-label="Digit 4">
+      </div>
+      <p class="pin-message" id="pinMessage" role="status" aria-live="polite">&nbsp;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PAGE 1 — "SO... THIS IS ABOUT YOU"
+     ============================================================ -->
+<section class="page" id="page-1" data-page="1">
+  <div class="card">
+    <h2 class="serif-heading">Okay… now that you've made it this far…</h2>
+    <p class="lead-text">This little corner of the internet is about you.</p>
+
+    <!-- Optional cat image for this page -->
+    <div class="img-frame img-square small-frame" data-placeholder="CAT PICTURE 🐾">
+      <img src="assets/cat2.jpg" alt="A cat" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+    </div>
+
+    <p class="handwritten-note">
+      "I don't think you realize how effortlessly cute you can be.
+      So I thought I'd make you a tiny place where that could be officially documented."
+    </p>
+
+    <button class="next-btn" data-next="2">Tell me more ♡</button>
+  </div>
+  <a class="back-link" data-prev="0">← back</a>
+</section>
+
+<!-- ============================================================
+     PAGE 2 — "MISS LITTLE 5 FEET"
+     ============================================================ -->
+<section class="page" id="page-2" data-page="2">
+  <div class="card">
+    <h2 class="script-heading big">Miss Little 5 Feet ♡</h2>
+
+    <div class="img-frame img-portrait" data-placeholder="A VERY TALL CAT, A VERY SHORT YOU ♡">
+      <img src="assets/memory1.jpg" alt="Her, being small and wonderful" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+    </div>
+
+    <div class="tiny-cards">
+      <div class="tiny-card">Officially tiny.</div>
+      <div class="tiny-card">Dangerously adorable.</div>
+      <div class="tiny-card">Pocket-sized menace.</div>
+      <div class="tiny-card">5 feet of pure sweetness.</div>
+      <div class="tiny-card">Absolutely no evidence of normal behavior.</div>
+    </div>
+
+    <button class="next-btn" data-next="3">Next page →</button>
+  </div>
+  <a class="back-link" data-prev="1">← back</a>
+</section>
+
+<!-- ============================================================
+     PAGE 3 — THE CAT DEPARTMENT
+     ============================================================ -->
+<section class="page" id="page-3" data-page="3">
+  <div class="card wide-card">
+    <h2 class="serif-heading">The Cat Department has something to say.</h2>
+
+    <div class="cat-council">
+      <div class="council-card">
+        <div class="img-frame img-square small-frame" data-placeholder="CAT #1 🐈">
+          <img src="assets/cat1.jpg" alt="Cat #1" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <p class="council-verdict">"Approved. She is adorable."</p>
+      </div>
+      <div class="council-card">
+        <div class="img-frame img-square small-frame" data-placeholder="CAT #2 🐈">
+          <img src="assets/cat2.jpg" alt="Cat #2" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <p class="council-verdict">"Would protect her at all costs."</p>
+      </div>
+      <div class="council-card">
+        <div class="img-frame img-square small-frame" data-placeholder="CAT #3 🐈">
+          <img src="assets/cat3.jpg" alt="Cat #3" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <p class="council-verdict">"10/10 would sit beside her."</p>
+      </div>
+      <div class="council-card">
+        <div class="img-frame img-square small-frame" data-placeholder="CAT #4 🐈">
+          <img src="assets/cat4.jpg" alt="Cat #4" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <p class="council-verdict">"Officially certified cute."</p>
+      </div>
+    </div>
+
+    <button class="next-btn" data-next="4">Continue</button>
+  </div>
+  <a class="back-link" data-prev="2">← back</a>
+</section>
+
+<!-- ============================================================
+     PAGE 4 — PARIS
+     ============================================================ -->
+<section class="page" id="page-4" data-page="4">
+  <div class="card paris-card">
+    <div class="img-frame img-wide-tall" data-placeholder="A LITTLE PIECE OF PARIS 🗼">
+      <img src="assets/paris.jpg" alt="Paris" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+    </div>
+    <h2 class="script-heading">A little piece of Paris for you ♡</h2>
+    <p class="handwritten-note">
+      "If I could fold a little piece of Paris into a webpage,
+      I'd probably leave it here for you."
+    </p>
+    <button class="next-btn" data-next="5">One more thing…</button>
+  </div>
+  <a class="back-link" data-prev="3">← back</a>
+</section>
+
+<!-- ============================================================
+     PAGE 5 — LITTLE THINGS I ADORE
+     ============================================================ -->
+<section class="page" id="page-5" data-page="5">
+  <div class="card wide-card">
+    <h2 class="serif-heading">Little things that make you… you.</h2>
+
+    <div class="adore-list" id="adoreList">
+      <div class="adore-card">♡ Your smile</div>
+      <div class="adore-card">♡ Your eyes</div>
+      <div class="adore-card">♡ Your tiny 5-foot existence</div>
+      <div class="adore-card">♡ Your love for cats</div>
+      <div class="adore-card">♡ The way you make ordinary conversations feel special</div>
+      <div class="adore-card">♡ Your little quirks</div>
+      <div class="adore-card">♡ Your softness</div>
+    </div>
+
+    <button class="next-btn" data-next="6">Keep going ♡</button>
+  </div>
+  <a class="back-link" data-prev="4">← back</a>
+</section>
+
+<!-- ============================================================
+     PAGE 6 — PHOTO GALLERY
+     ============================================================ -->
+<section class="page" id="page-6" data-page="6">
+  <div class="card wide-card">
+    <h2 class="serif-heading">A little scrapbook.</h2>
+
+    <div class="gallery">
+      <button class="polaroid rot-1" data-full="assets/memory1.jpg" data-placeholder="pretty girl ♡">
+        <div class="img-frame img-square" data-placeholder="pretty girl ♡">
+          <img src="assets/memory1.jpg" alt="pretty girl" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <span class="polaroid-caption">pretty girl ♡</span>
+      </button>
+      <button class="polaroid rot-2" data-full="assets/her-eyes.jpg" data-placeholder="look at those eyes…">
+        <div class="img-frame img-square" data-placeholder="look at those eyes…">
+          <img src="assets/her-eyes.jpg" alt="her eyes" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <span class="polaroid-caption">look at those eyes…</span>
+      </button>
+      <button class="polaroid rot-3" data-full="assets/memory2.jpg" data-placeholder="certified cutie">
+        <div class="img-frame img-square" data-placeholder="certified cutie">
+          <img src="assets/memory2.jpg" alt="certified cutie" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <span class="polaroid-caption">certified cutie</span>
+      </button>
+      <button class="polaroid rot-4" data-full="assets/cat1.jpg" data-placeholder="tiny human, enormous heart">
+        <div class="img-frame img-square" data-placeholder="tiny human, enormous heart">
+          <img src="assets/cat1.jpg" alt="tiny human, enormous heart" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <span class="polaroid-caption">tiny human, enormous heart</span>
+      </button>
+      <button class="polaroid rot-5" data-full="assets/paris.jpg" data-placeholder="Paris would suit you.">
+        <div class="img-frame img-square" data-placeholder="Paris would suit you.">
+          <img src="assets/paris.jpg" alt="Paris would suit you" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <span class="polaroid-caption">Paris would suit you.</span>
+      </button>
+      <button class="polaroid rot-6" data-full="assets/cat2.jpg" data-placeholder="✿">
+        <div class="img-frame img-square" data-placeholder="✿">
+          <img src="assets/cat2.jpg" alt="a little extra cuteness" onerror="this.style.display='none'; this.parentElement.classList.add('show-placeholder')">
+        </div>
+        <span class="polaroid-caption">a little extra cuteness</span>
+      </button>
+    </div>
+
+    <button class="next-btn" data-next="7">Continue</button>
+  </div>
+  <a class="back-link" data-prev="5">← back</a>
+</section>
+
+<!-- Lightbox for gallery -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <div class="img-frame lightbox-frame" id="lightboxFrame" data-placeholder="">
+    <img id="lightboxImg" src="" alt="Enlarged photo">
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE 7 — THE FINAL LETTER
+     ============================================================ -->
+<section class="page" id="page-7" data-page="7">
+  <div class="card letter-card">
+    <h2 class="serif-heading">And finally…</h2>
+    <div class="letter-text">
+      <p>Almish, Sienna, Miss Little 5 Feet—</p>
+      <p>I made this because sometimes a normal message doesn't feel like enough.</p>
+      <p>You're someone I find genuinely precious, and I wanted to make you a tiny place that reminds you of that.</p>
+      <p>So whenever you forget how cute, wonderful and special you are…<br>maybe come back here.</p>
+      <p>There will always be flowers.<br>There will always be cats.<br>And there will always be a tiny corner of the internet that belongs to you.</p>
+      <p class="letter-sign">♡</p>
+    </div>
+
+    <button class="ps-btn" id="psBtn">P.S. ♡</button>
+    <div class="ps-message" id="psMessage" hidden>
+      <p>P.S. You're still only 5 feet tall.<br>That part remains scientifically undeniable.<br>Sorry, Miss Little 5 Feet. ♡</p>
+      <div class="tiny-walking-cat" aria-hidden="true">🐈</div>
+    </div>
+  </div>
+  <a class="back-link" data-prev="6">← back</a>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+/* ==========================================================
+   FOR MISS LITTLE 5 FEET — STYLESHEET
+   A dreamy Parisian / cat / flower scrapbook theme.
+
+   COLOR PALETTE (change these to re-theme the whole site)
+   ========================================================== */
+:root{
+  --cream:        #FBF4EC;
+  --blush:        #F3D6D6;
+  --dusty-rose:   #C98A94;
+  --lavender:     #E7DCF2;
+  --beige:        #EFE3D0;
+  --gold:         #C9A66B;
+  --ink:          #4A3B3E;
+  --ink-soft:     #7A6468;
+  --white-soft:   #FFFDF9;
+
+  /* Fonts — if Google Fonts fail to load, these fall back safely */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-script:  'Caveat', 'Brush Script MT', cursive;
+  --font-body:    'Quicksand', -apple-system, 'Segoe UI', sans-serif;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 10%, var(--blush) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 20%, var(--lavender) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, var(--beige) 0%, transparent 60%),
+    var(--cream);
+  font-family: var(--font-body);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ==========================================================
+   BACKGROUND DECOR (petals, hearts, stars — populated by JS)
+   ========================================================== */
+.bg-decor{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+.bg-decor .drift{
+  position: absolute;
+  top: -40px;
+  will-change: transform, opacity;
+  animation-name: drift-down;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.85;
+  user-select: none;
+}
+@keyframes drift-down{
+  0%   { transform: translateY(-5vh) translateX(0) rotate(0deg); }
+  50%  { transform: translateY(50vh) translateX(15px) rotate(180deg); }
+  100% { transform: translateY(105vh) translateX(-10px) rotate(360deg); }
+}
+
+/* ==========================================================
+   PROGRESS INDICATOR + MUSIC TOGGLE
+   ========================================================== */
+.progress-indicator{
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+  color: var(--dusty-rose);
+  background: rgba(255,253,249,0.7);
+  padding: 3px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.progress-indicator.visible{ opacity: 1; }
+
+.music-toggle{
+  position: fixed;
+  top: 12px;
+  right: 14px;
+  z-index: 50;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: var(--white-soft);
+  color: var(--dusty-rose);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(180, 140, 130, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.music-toggle:hover{ transform: scale(1.08); }
+.music-toggle.playing{ background: var(--blush); }
+
+/* ==========================================================
+   PAGE LAYOUT + TRANSITIONS
+   ========================================================== */
+.page{
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 18px 60px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.page.active{
+  display: flex;
+}
+.page.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-link{
+  margin-top: 22px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+.back-link:hover{ opacity: 1; }
+
+/* ==========================================================
+   CARDS
+   ========================================================== */
+.card, .entrance-card{
+  background: var(--white-soft);
+  border-radius: 26px;
+  padding: 36px 26px 30px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 18px 45px rgba(160, 120, 110, 0.18);
+  border: 1px solid rgba(201, 166, 107, 0.25);
+  text-align: center;
+  position: relative;
+}
+.wide-card{ max-width: 620px; }
+.paris-card{
+  background:
+    linear-gradient(rgba(255,253,249,0.93), rgba(255,253,249,0.93)),
+    var(--white-soft);
+}
+.letter-card{ max-width: 480px; }
+
+/* ==========================================================
+   TYPOGRAPHY
+   ========================================================== */
+.script-heading{
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  color: var(--dusty-rose);
+  margin: 6px 0 14px;
+  line-height: 1.25;
+}
+.script-heading.big{ font-size: 2.6rem; }
+.serif-heading{
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+.eyebrow-heart{
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin: 0 0 2px;
+}
+.lead-text{
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.tiny-caption{
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+}
+.handwritten-note{
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 18px 0 22px;
+  padding: 0 6px;
+}
+
+/* ==========================================================
+   IMAGE PLACEHOLDERS / FRAMES
+   All images use onerror to reveal a pretty text placeholder
+   instead of a broken-image icon (see script.js / inline onerror).
+   ========================================================== */
+.img-frame{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--blush), var(--lavender));
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img-frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-frame::after{
+  content: attr(data-placeholder);
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  font-family: var(--font-script);
+  font-size: 1.2rem;
+  color: var(--dusty-rose);
+}
+.img-frame.show-placeholder::after{ display: flex; }
+.img-frame.show-placeholder{
+  background: repeating-linear-gradient(45deg, var(--blush), var(--blush) 12px, var(--lavender) 12px, var(--lavender) 24px);
+}
+
+.img-wide{ width: 100%; aspect-ratio: 4 / 1; }
+.img-wide-tall{ width: 100%; aspect-ratio: 3 / 2; margin-bottom: 16px; }
+.img-square{ width: 180px; aspect-ratio: 1 / 1; }
+.img-portrait{ width: 220px; aspect-ratio: 3 / 4; margin-bottom: 18px; }
+.small-frame{ width: 130px; }
+
+.floral-frame{
+  border: 6px solid var(--white-soft);
+  outline: 2px dashed var(--gold);
+  outline-offset: -10px;
+  box-shadow: 0 10px 24px rgba(160, 120, 110, 0.22);
+}
+
+/* ==========================================================
+   PIN LOCK
+   ========================================================== */
+.pin-lock{ margin-top: 20px; }
+.pin-title{
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 2px;
+  font-size: 1.05rem;
+}
+.pin-subtitle{
+  font-family: var(--font-script);
+  color: var(--dusty-rose);
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+.pin-boxes{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.pin-digit{
+  width: 48px;
+  height: 58px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-family: var(--font-body);
+  color: var(--ink);
+  border: 2px solid var(--dusty-rose);
+  border-radius: 14px;
+  background: var(--cream);
+  outline-offset: 3px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.pin-digit:focus{
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201, 166, 107, 0.25);
+}
+.pin-boxes.correct .pin-digit{
+  border-color: var(--gold);
+  background: var(--blush);
+  box-shadow: 0 0 16px rgba(201, 166, 107, 0.6);
+}
+.pin-boxes.shake{ animation: shake 0.5s ease; }
+@keyframes shake{
+  0%, 100%{ transform: translateX(0); }
+  20%{ transform: translateX(-8px); }
+  40%{ transform: translateX(8px); }
+  60%{ transform: translateX(-6px); }
+  80%{ transform: translateX(6px); }
+}
+.pin-message{
+  margin-top: 14px;
+  min-height: 1.4em;
+  font-size: 0.92rem;
+  color: var(--dusty-rose);
+}
+.pin-message.error{ color: #B4626E; }
+
+.entrance-card.unlocked{
+  animation: pulse-glow 1s ease;
+}
+@keyframes pulse-glow{
+  0%{ box-shadow: 0 18px 45px rgba(160,120,110,0.18); }
+  50%{ box-shadow: 0 0 60px rgba(201, 166, 107, 0.55); }
+  100%{ box-shadow: 0 18px 45px rgba(160,120,110,0.18); }
+}
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+.next-btn, .ps-btn{
+  margin-top: 24px;
+  padding: 13px 30px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, var(--dusty-rose), var(--gold));
+  color: var(--white-soft);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(180, 130, 110, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 46px;
+}
+.next-btn:hover, .ps-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(180, 130, 110, 0.45);
+}
+.next-btn:focus-visible, .ps-btn:focus-visible, .music-toggle:focus-visible, .back-link:focus-visible{
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ==========================================================
+   TINY CARDS (Miss Little 5 Feet page)
+   ========================================================== */
+.tiny-cards{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
+}
+.tiny-card{
+  background: var(--beige);
+  border-radius: 16px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  color: var(--ink);
+  box-shadow: 0 4px 10px rgba(160,120,110,0.12);
+}
+
+/* ==========================================================
+   CAT COUNCIL
+   ========================================================== */
+.cat-council{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 10px;
+}
+.council-card{
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 14px 10px 16px;
+  box-shadow: 0 6px 16px rgba(160,120,110,0.14);
+}
+.council-verdict{
+  font-family: var(--font-script);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 6px 0 0;
+}
+
+/* ==========================================================
+   ADORE LIST — cards fade in one by one
+   ========================================================== */
+.adore-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 8px;
+}
+.adore-card{
+  background: var(--lavender);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 0.98rem;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.adore-card.shown{ opacity: 1; transform: translateY(0); }
+
+/* ==========================================================
+   GALLERY / POLAROIDS
+   ========================================================== */
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 16px;
+  justify-content: center;
+  margin: 14px 0 8px;
+}
+.polaroid{
+  background: var(--white-soft);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 10px 16px;
+  box-shadow: 0 8px 18px rgba(160,120,110,0.2);
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+.polaroid:hover{ transform: scale(1.05) rotate(0deg) !important; }
+.polaroid .img-frame{ margin-bottom: 8px; width: 130px; height: 130px; }
+.polaroid-caption{ display: block; }
+.rot-1{ transform: rotate(-4deg); }
+.rot-2{ transform: rotate(3deg); }
+.rot-3{ transform: rotate(-2deg); }
+.rot-4{ transform: rotate(5deg); }
+.rot-5{ transform: rotate(-5deg); }
+.rot-6{ transform: rotate(2deg); }
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(74, 59, 63, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox.open{ display: flex; }
+.lightbox-frame{ width: min(90vw, 420px); aspect-ratio: 1/1; border-radius: 14px; }
+.lightbox-close{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white-soft);
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ==========================================================
+   LETTER PAGE
+   ========================================================== */
+.letter-text{
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ink);
+  text-align: left;
+}
+.letter-sign{
+  text-align: center;
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+.ps-message{
+  margin-top: 16px;
+  font-family: var(--font-script);
+  font-size: 1.2rem;
+  color: var(--dusty-rose);
+  animation: fade-in-simple 0.6s ease;
+}
+@keyframes fade-in-simple{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.tiny-walking-cat{
+  font-size: 1.8rem;
+  margin-top: 8px;
+  animation: walk 2.4s ease-in-out infinite;
+}
+@keyframes walk{
+  0%, 100%{ transform: translateX(-10px); }
+  50%{ transform: translateX(10px) scaleX(-1); }
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (min-width: 640px){
+  .cat-council{ grid-template-columns: repeat(2, 1fr); }
+  .img-wide{ aspect-ratio: 4.5 / 1; }
+}
+@media (max-width: 380px){
+  .pin-digit{ width: 42px; height: 52px; font-size: 1.4rem; }
+  .card, .entrance-card{ padding: 28px 18px 24px; }
+  .script-heading.big{ font-size: 2.1rem; }
+}
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bg-decor{ display: none; }
+}
