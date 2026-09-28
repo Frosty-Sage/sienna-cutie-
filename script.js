@@ -42,7 +42,16 @@ const MUSIC_ENABLED = true;   // false hides the music button completely
 // Tiny things the animals say when tapped. Add or change any you like!
 const CRITTER_SAYS = [
   "hehe ♡", "hi Miss Little 5 Feet!", "*hugs you*", "you're so cute",
-  "approved ✿", "tiny but mighty", "snuggle time?", "♡ ♡ ♡"
+  "approved ✿", "tiny but mighty", "snuggle time?", "♡ ♡ ♡","my favorite hello, always ♡",
+"home is wherever you are ✿",
+"my comfort person ☁️💗",
+"oops, you stole my heart ♡",
+"lucky me ✨",
+"thinking of you again ♡",
+"your smile is unfair 🌷",
+"you make ordinary days sparkle ✧",
+"the stars whisper your name ✦",
+"flowers reminded me of you 🌹♡"
 ];
 
 // Tapping anywhere sprinkles a tiny heart/sparkle (set false to turn off).
