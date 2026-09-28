@@ -11,7 +11,7 @@
 
 // The 4-digit PIN needed to unlock the site.
 // Change "1234" to any 4-digit code you like, e.g. "0714".
-const SECRET_CODE = "1234";
+const SECRET_CODE = "0109";
 
 // The gentle "wrong code" message. Feel free to reword it.
 const WRONG_CODE_MESSAGE = "Hmm… Miss Little 5 Feet wouldn't forget this that easily, would she? ♡";
